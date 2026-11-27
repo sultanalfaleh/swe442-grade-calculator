@@ -48,8 +48,25 @@ public class GradeCalculator {
         BigDecimal count = BigDecimal.valueOf(grades.size());
         BigDecimal average = total.divide(count, 2, RoundingMode.HALF_UP);
 
-        System.out.println("Average: " + average.toPlainString()
-                + "\nHighest Grade: " + highest.setScale(2, RoundingMode.HALF_UP).toPlainString()
-                + "\nLowest Grade: " + lowest.setScale(2, RoundingMode.HALF_UP).toPlainString());
+        String letterGrade;
+
+        if (total.compareTo(count.multiply(BigDecimal.valueOf(90))) >= 0) {
+            letterGrade = "A";
+        } else if (total.compareTo(count.multiply(BigDecimal.valueOf(80))) >= 0) {
+            letterGrade = "B";
+        } else if (total.compareTo(count.multiply(BigDecimal.valueOf(70))) >= 0) {
+            letterGrade = "C";
+        } else if (total.compareTo(count.multiply(BigDecimal.valueOf(60))) >= 0) {
+            letterGrade = "D";
+        } else {
+            letterGrade = "F";
+        }
+
+       
+System.out.println("Average: " + average.toPlainString()
+        + "\nLetter Grade: " + letterGrade
+        + "\nHighest Grade: " + highest.setScale(2, RoundingMode.HALF_UP).toPlainString()
+        + "\nLowest Grade: " + lowest.setScale(2, RoundingMode.HALF_UP).toPlainString());
+
     }
 }
