@@ -30,8 +30,19 @@ public class GradeCalculator {
 
     private static void printSummary(List<BigDecimal> grades) {
         BigDecimal total = BigDecimal.ZERO;
+        BigDecimal highest = grades.get(0);
+        BigDecimal lowest = grades.get(0);
+
         for (BigDecimal grade : grades) {
             total = total.add(grade);
+
+            if (grade.compareTo(highest) > 0) {
+                highest = grade;
+            }
+
+            if (grade.compareTo(lowest) < 0) {
+                lowest = grade;
+            }
         }
 
         BigDecimal count = BigDecimal.valueOf(grades.size());
@@ -51,7 +62,11 @@ public class GradeCalculator {
             letterGrade = "F";
         }
 
-        System.out.println("Average: " + average.toPlainString()
-                + "\nLetter Grade: " + letterGrade);
+       
+System.out.println("Average: " + average.toPlainString()
+        + "\nLetter Grade: " + letterGrade
+        + "\nHighest Grade: " + highest.setScale(2, RoundingMode.HALF_UP).toPlainString()
+        + "\nLowest Grade: " + lowest.setScale(2, RoundingMode.HALF_UP).toPlainString());
+
     }
 }
